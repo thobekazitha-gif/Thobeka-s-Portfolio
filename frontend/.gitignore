@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+dist-ssr/
+
+# vite cache
+node_modules/.vite/
+.vite-temp/
+*.local
+
+# env files
+.env
+.env.*
+!.env.example
+
+# logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# figma make dev artifacts (keep .figma/make/site.json — vite.config.ts needs it)
+.figma/make/kit.html
+
+# typescript
+*.tsbuildinfo
