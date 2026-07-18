@@ -1,3 +1,5 @@
+import contactImg from '../imports/african landscape.jpg'
+
 const interests = [
   'Full-Stack Development',
   'Software Engineering',
@@ -158,13 +160,13 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right: large portrait + quote */}
+          {/* Right: large image + quote */}
           <div style={{ position: 'relative' }}>
             <div style={{ height: '500px', overflow: 'hidden', position: 'relative', background: '#111' }}>
               <img
-                src="https://images.unsplash.com/photo-1770062422093-ae32c8fed2a3?w=700&h=800&fit=crop&auto=format"
-                alt="Professional portrait"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(40%)', opacity: 0.75 }}
+                src={contactImg}
+                alt="Stylized map of Africa"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)', opacity: 0.85 }}
               />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 50%, transparent 100%)' }} />
               {/* Quote overlay */}

@@ -1,357 +1,382 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+
+import hgPromotionsImg from '../imports/HG_Promotions.png'
+import campariImg from '../imports/Campari_Promotions.png'
+import archerImg from '../imports/Archer_Africa.png'
+import saHomeschoolingImg from '../imports/SA_homeschooling.png'
+import sentimentImg from '../imports/Sentiment_Analyzer.png'
+import predictiveMaintenanceImg from '../imports/AI_Predictive_Maintenance.png'
+import resumeBuilderImg from '../imports/LLG_Resume_Builder.png'
+import educationalMaterialImg from '../imports/Educal_app.png'
+import loanPredictionImg from '../imports/image-1.png'
+import sundaySchoolImg from '../imports/image-2.png'
+import gudeMobileImg from '../imports/Gude_Mobile.png'
+import neonDexImg from '../imports/Neon_Dex.png'
+import openBankImg from '../imports/OpenBank.png'
 
 type Project = {
+  id: string
   title: string
-  tagline: string
-  description: string
-  tech: string[]
-  live?: string
-  github?: string
-  inProduction?: boolean
   category: string
+  description: string
   image: string
+  tags: string[]
+  liveUrl?: string
+  githubUrl?: string
 }
 
-const projects: Project[] = [
+const PROJECTS: Project[] = [
   {
-    title: 'HG Promotions Platform',
-    tagline: 'Connecting businesses with promoters across South Africa',
-    description: 'A full-stack platform connecting businesses with professional promoters. Features include authentication, geolocation-based matching, API integration, and a secure backend architecture built for real client use.',
-    tech: ['React', 'Node.js', 'PostgreSQL', 'Geolocation API', 'JWT'],
-    live: 'https://hg-promotions.vercel.app/',
-    inProduction: true,
-    category: 'Full-Stack',
-    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop&auto=format',
-  },
-  {
-    title: 'Fak\'ugesi 2026 Festival Website',
-    tagline: 'Africa\'s leading digital innovation festival',
-    description: 'Developed features for one of Africa\'s premier digital innovation festivals. Built responsive sections, interactive event listings, and dynamic content for the Fak\'ugesi African Digital Innovation Festival 2026.',
-    tech: ['React', 'JavaScript', 'CSS3', 'Responsive Design'],
-    live: 'https://fakugesi-2026.vercel.app/',
-    inProduction: true,
-    category: 'Frontend',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop&auto=format',
-  },
-  {
-    title: 'SA Homeschooling Services',
-    tagline: 'Connecting families with verified homeschooling providers',
-    description: 'A full-stack directory platform connecting South African homeschooling families with verified tutors, therapists, and curriculum providers. Features multi-step registration, admin dashboard, file uploads, JWT auth, and role-based access.',
-    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Prisma', 'JWT', 'Multer'],
-    live: 'https://sunday-school-gules.vercel.app/',
-    inProduction: true,
-    category: 'Full-Stack',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=500&fit=crop&auto=format',
-  },
-  {
-    title: 'Campari Promotions',
-    tagline: 'Brand promotions management platform',
-    description: 'A promotions and brand engagement platform developed for real client use. Manages campaign workflows, promoter assignments, and reporting dashboards.',
-    tech: ['React', 'Node.js', 'PostgreSQL', 'REST API'],
-    live: 'https://campari-promotions.vercel.app/',
-    inProduction: true,
-    category: 'Full-Stack',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop&auto=format',
-  },
-  {
-    title: 'Amani Marketplace',
-    tagline: 'Social impact marketplace for GBV survivor artisans',
-    description: 'An Angular-based marketplace connecting buyers with handcrafted goods made by survivors at care centres across South Africa. 70% of sales go directly to the makers. Features admin dashboard, buyer portal, cart system, and role-based auth.',
-    tech: ['Angular', 'Node.js', 'TypeScript', 'Express', 'PostgreSQL', 'LocalStorage'],
-    category: 'Full-Stack',
-    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=500&fit=crop&auto=format',
-  },
-  {
-    title: 'NeonDex Platform',
-    tagline: 'Modern digital experience platform',
-    description: 'A production web platform with modern UI patterns and scalable backend architecture, deployed and serving live users.',
-    tech: ['React', 'Node.js', 'REST APIs'],
-    live: 'https://neondex-22.netlify.app/',
-    inProduction: true,
-    category: 'Full-Stack',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop&auto=format',
-  },
-  {
+    id: 'openbank',
     title: 'OpenBank',
-    tagline: 'FinTech banking interface',
-    description: 'A modern banking platform interface featuring account management, transaction history, and financial dashboard components built with a focus on security and UX.',
-    tech: ['React', 'JavaScript', 'Tailwind CSS', 'REST API'],
-    live: 'https://openbank-nine.vercel.app/',
-    category: 'FinTech',
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=500&fit=crop&auto=format',
+    category: 'Personal Project',
+    description: 'A personal project prototyping a modern banking experience.',
+    image: openBankImg,
+    tags: ['Personal'],
   },
   {
-    title: 'Archer Africa Website',
-    tagline: 'International academic experiences across Africa',
-    description: 'Multi-page static website for Archer Africa, marketing immersive academic programs across Africa. Features collapsible service cards, numbered card layouts, and responsive multi-section design.',
-    tech: ['HTML5', 'CSS3', 'JavaScript', 'SVG'],
-    live: 'https://archer-africa.vercel.app/',
-    category: 'Frontend',
-    image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&h=500&fit=crop&auto=format',
+    id: 'hg-promotions',
+    title: 'HG Promotions',
+    category: 'Production — Staffing Platform',
+    description:
+      'The earlier iteration of the promotions staffing platform before it was rebranded to Campari Promotions — same core system: role-based dashboards for admins, supervisors, businesses, and promoters.',
+    image: hgPromotionsImg,
+    tags: ['React', 'TypeScript', 'Node.js', 'Prisma', 'PostgreSQL'],
   },
   {
-    title: 'Phunya Tsela Career Expo',
-    tagline: 'APS registration platform for career expo attendees',
-    description: 'An event registration system for the Phunya Tsela Career Expo, enabling attendees to register their APS scores and connect with educational opportunities.',
-    tech: ['React', 'Node.js', 'PostgreSQL'],
-    category: 'Full-Stack',
-    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&h=500&fit=crop&auto=format',
+    id: 'campari-promotions',
+    title: 'Campari Promotions',
+    category: 'Production — Staffing Platform',
+    description:
+      'A full-stack promotions staffing platform with distinct dashboards for admins, supervisors, businesses, and promoters — including an Instagram-DM-style chat request system, budget/PO tracking, activation report submissions, and a business credit ledger with CSV/PDF export.',
+    image: campariImg,
+    tags: ['React', 'TypeScript', 'Node.js', 'Prisma', 'PostgreSQL'],
+    githubUrl: 'https://github.com/Addmore-Development/Campari-Promotions',
   },
   {
-    title: 'Loan Prediction System',
-    tagline: 'AI-powered loan approval prediction',
-    description: 'Machine learning application using classification algorithms to predict loan approval outcomes based on applicant data. Built with Python and Scikit-learn.',
-    tech: ['Python', 'Scikit-learn', 'ML', 'Pandas', 'Data Analysis'],
-    category: 'AI / ML',
-    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop&auto=format',
+    id: 'sa-homeschooling',
+    title: 'SA Homeschooling Services',
+    category: 'Production — Education Platform',
+    description:
+      'A platform built to support homeschooling services with a modern, responsive web application.',
+    image: saHomeschoolingImg,
+    tags: ['React', 'Express', 'PostgreSQL'],
+    liveUrl: 'https://sahomeschooling-services-ckh9.onrender.com/',
   },
   {
+    id: 'archer-africa',
+    title: 'Archer Africa',
+    category: 'Production — Static Multi-Page Site',
+    description:
+      'A multi-page site for an international academic-experiences company based in Johannesburg, including an expandable services section and consolidated navigation.',
+    image: archerImg,
+    tags: ['HTML', 'CSS', 'JavaScript'],
+  },
+  {
+    id: 'sentiment-analyzer',
     title: 'Sentiment Analyzer',
-    tagline: 'NLP sentiment analysis application',
-    description: 'Natural Language Processing application that analyzes sentiment from user-submitted text. Uses NLP techniques to classify positive, negative, and neutral sentiment.',
-    tech: ['Python', 'NLP', 'NLTK', 'React', 'Flask'],
-    category: 'AI / ML',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop&auto=format',
+    category: 'AI / ML — Text Emotion Analysis',
+    description:
+      'A dashboard that analyzes sentiment and emotional tone from user-submitted text using natural language processing.',
+    image: sentimentImg,
+    tags: ['Python', 'NLP', 'Machine Learning'],
+    liveUrl: 'https://c0qai4ygity3.trickle.host/',
   },
   {
+    id: 'ai-predictive-maintenance',
     title: 'AI Predictive Maintenance Tool',
-    tagline: 'ML solution for equipment failure prevention',
-    description: 'Machine learning solution that analyzes equipment sensor data to identify potential failures before they occur, reducing downtime and maintenance costs.',
-    tech: ['Python', 'Machine Learning', 'Scikit-learn', 'Time Series'],
-    category: 'AI / ML',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=500&fit=crop&auto=format',
+    category: 'AI / ML — Equipment Forecasting',
+    description:
+      'A predictive system designed to forecast equipment failures and optimize maintenance schedules before problems occur.',
+    image: predictiveMaintenanceImg,
+    tags: ['Python', 'Flask', 'Machine Learning'],
+    liveUrl: 'https://crow-flask-51049066.figma.site/',
   },
   {
+    id: 'logic-league-resume-builder',
     title: 'Logic League Resume Builder',
-    tagline: 'Interactive professional resume builder',
-    description: 'Interactive platform that helps users build, customize, and export professional resumes with real-time preview and template switching.',
-    tech: ['React', 'JavaScript', 'CSS3', 'PDF Export'],
-    category: 'Tools',
-    image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=500&fit=crop&auto=format',
+    category: 'Bootcamp — Career Tool',
+    description:
+      'A user-friendly tool for creating professional, ATS-optimized resumes.',
+    image: resumeBuilderImg,
+    tags: ['JavaScript', 'HTML', 'CSS'],
+    liveUrl: 'https://logic-league-one.vercel.app/',
   },
   {
-    title: 'GradJob',
-    tagline: 'Job discovery for graduates',
-    description: 'A job discovery platform designed to connect graduates with entry-level opportunities and internships across South Africa\'s tech ecosystem.',
-    tech: ['React', 'Node.js', 'REST API', 'PostgreSQL'],
-    category: 'Full-Stack',
-    image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=500&fit=crop&auto=format',
+    id: 'logic-league-educational-material',
+    title: 'Logic League Educational Material',
+    category: 'Bootcamp — Learning Platform',
+    description:
+      'An educational platform providing interactive learning resources and materials.',
+    image: educationalMaterialImg,
+    tags: ['JavaScript', 'HTML', 'CSS'],
+    liveUrl: 'https://logic-league.vercel.app/',
   },
   {
-    title: 'Conversational Chatbot',
-    tagline: 'NLP-powered conversational AI',
-    description: 'Conversational AI application using Natural Language Processing to understand and respond to user queries in a context-aware manner.',
-    tech: ['Python', 'NLP', 'React', 'WebSocket'],
-    category: 'AI / ML',
-    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&h=500&fit=crop&auto=format',
+    id: 'loan-prediction',
+    title: 'Loan Prediction — Bias Audit',
+    category: 'AI / ML — Fairness Auditing',
+    description:
+      'Analyzes and mitigates bias in a loan-prediction ML model using fairness metrics, visualizations, and ethical recommendations.',
+    image: loanPredictionImg,
+    tags: ['Python', 'Scikit-learn', 'Pandas', 'Jupyter'],
+    githubUrl: 'https://github.com/thobekazitha-gif/Loan-Prediction-Jupyter',
   },
   {
+    id: 'sunday-school-portal',
+    title: 'Sunday School Portal',
+    category: 'Conversational App',
+    description:
+      'An interactive chatbot-driven portal built for a Sunday School program.',
+    image: sundaySchoolImg,
+    tags: ['Chatbot', 'Landbot'],
+    liveUrl: 'https://landbot.online/v3/H-3106021-L0BWBVHVKR7Y1AMH/index.html',
+  },
+  {
+    id: 'gude-mobile',
     title: 'Gude Mobile',
-    tagline: 'Student-focused mobile accessibility app',
-    description: 'Student-focused mobile application designed to improve accessibility and digital engagement for university students, connecting them with resources and campus services.',
-    tech: ['React Native', 'Node.js', 'MongoDB'],
-    category: 'Mobile',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop&auto=format',
+    category: 'Mobile App',
+    description:
+      'A student-focused mobile application designed to improve accessibility and digital engagement.',
+    image: gudeMobileImg,
+    tags: ['Mobile'],
+  },
+  {
+    id: 'neondex',
+    title: 'NeonDex',
+    category: 'Personal Project',
+    description: 'A personal portfolio project exploring interface and data design.',
+    image: neonDexImg,
+    tags: ['Personal'],
   },
 ]
 
-const categories = ['All', 'Full-Stack', 'Frontend', 'AI / ML', 'FinTech', 'Mobile', 'Tools']
-
 export default function Projects() {
-  const [active, setActive] = useState('All')
-  const [hovered, setHovered] = useState<string | null>(null)
+  const [activeId, setActiveId] = useState<string | null>(null)
+  const active = PROJECTS.find((p) => p.id === activeId) ?? null
 
-  const filtered = active === 'All' ? projects : projects.filter((p) => p.category === active)
-  const inProduction = projects.filter((p) => p.inProduction)
+  useEffect(() => {
+    if (active) {
+      window.lenis?.stop()
+      document.body.style.overflow = 'hidden'
+    } else {
+      window.lenis?.start()
+      document.body.style.overflow = ''
+    }
+    return () => {
+      window.lenis?.start()
+      document.body.style.overflow = ''
+    }
+  }, [active])
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveId(null)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   return (
-    <section id="projects" style={{ padding: '8rem 5rem', background: '#0D0D0D' }}>
-      {/* Section header */}
+    <section id="projects" style={{ padding: '8rem 5rem', background: '#090909', position: 'relative' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5rem' }}>
-        <span className="font-mono" style={{ fontSize: '0.6rem', color: '#C9A84C', letterSpacing: '0.3em', textTransform: 'uppercase' }}>04 — Projects</span>
+        <span className="font-mono" style={{ fontSize: '0.6rem', color: '#C9A84C', letterSpacing: '0.3em', textTransform: 'uppercase' }}>
+          02 — Work
+        </span>
         <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent)' }} />
       </div>
 
-      {/* Projects in Production callout */}
-      <div style={{
-        background: 'linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.02))',
-        border: '1px solid rgba(201,168,76,0.25)',
-        padding: '2.5rem 3rem',
-        marginBottom: '4rem',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: '#C9A84C' }} />
-        <div style={{ marginBottom: '1rem' }}>
-          <span className="font-mono" style={{ fontSize: '0.6rem', color: '#C9A84C', letterSpacing: '0.3em', textTransform: 'uppercase' }}>
-            ◆ Projects in Production
-          </span>
-        </div>
-        <h3 className="font-display" style={{ fontSize: '1.5rem', fontWeight: 700, color: '#f5f5f0', marginBottom: '0.75rem' }}>
-          Live. Real clients. Real users.
-        </h3>
-        <p style={{ color: '#666', fontSize: '0.85rem', maxWidth: '600px', marginBottom: '1.5rem', fontWeight: 300 }}>
-          Beyond personal projects and coursework — these are shipped products serving real clients and users across South Africa.
-        </p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-          {inProduction.map((p) => (
-            <a
-              key={p.title}
-              href={p.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                padding: '0.4rem 1rem',
-                background: 'rgba(201,168,76,0.1)',
-                border: '1px solid rgba(201,168,76,0.3)',
-                color: '#C9A84C',
-                fontSize: '0.7rem',
-                letterSpacing: '0.1em',
-                textDecoration: 'none',
-                transition: 'all 0.2s',
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = '#C9A84C'; e.currentTarget.style.color = '#090909' }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(201,168,76,0.1)'; e.currentTarget.style.color = '#C9A84C' }}
-            >
-              {p.title}
-            </a>
-          ))}
-        </div>
-      </div>
-
-      {/* Filter tabs */}
-      <div style={{ display: 'flex', gap: '0', marginBottom: '3rem', flexWrap: 'wrap', borderBottom: '1px solid rgba(201,168,76,0.15)' }}>
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActive(cat)}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '1.5rem',
+        }}
+      >
+        {PROJECTS.map((p) => (
+          <motion.div
+            key={p.id}
+            layoutId={`card-${p.id}`}
+            onClick={() => setActiveId(p.id)}
             style={{
-              padding: '0.75rem 1.5rem',
-              background: 'none',
-              border: 'none',
-              fontSize: '0.65rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              cursor: 'pointer',
-              fontFamily: 'Space Mono, monospace',
-              color: active === cat ? '#C9A84C' : '#444',
-              borderBottom: active === cat ? '2px solid #C9A84C' : '2px solid transparent',
-              transition: 'all 0.2s',
-              marginBottom: '-1px',
-            }}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Projects grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'rgba(201,168,76,0.08)' }}>
-        {filtered.map((project) => (
-          <div
-            key={project.title}
-            style={{
-              background: hovered === project.title ? '#141414' : '#0D0D0D',
-              transition: 'background 0.3s',
-              cursor: 'default',
               position: 'relative',
+              height: '420px',
               overflow: 'hidden',
+              cursor: 'pointer',
+              background: '#111',
             }}
-            onMouseEnter={() => setHovered(project.title)}
-            onMouseLeave={() => setHovered(null)}
+            whileHover="hover"
+            initial="rest"
           >
-            {/* Image */}
-            <div style={{ height: '200px', overflow: 'hidden', position: 'relative', background: '#111' }}>
-              <img
-                src={project.image}
-                alt={project.title}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  filter: 'grayscale(60%)',
-                  opacity: 0.6,
-                  transition: 'all 0.4s',
-                  transform: hovered === project.title ? 'scale(1.05)' : 'scale(1)',
-                }}
-              />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(13,13,13,0.9) 0%, transparent 60%)' }} />
-
-              {/* Production badge */}
-              {project.inProduction && (
-                <div style={{
-                  position: 'absolute',
-                  top: '0.75rem',
-                  right: '0.75rem',
-                  padding: '0.2rem 0.6rem',
-                  background: '#C9A84C',
-                  color: '#090909',
-                  fontSize: '0.55rem',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  fontFamily: 'Space Mono, monospace',
-                  fontWeight: 700,
-                }}>
-                  Live
-                </div>
-              )}
-
-              {/* Category */}
-              <div style={{ position: 'absolute', bottom: '0.75rem', left: '1rem' }}>
-                <span className="font-mono" style={{ fontSize: '0.55rem', color: 'rgba(201,168,76,0.7)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-                  {project.category}
-                </span>
-              </div>
+            <motion.img
+              src={p.image}
+              alt={p.title}
+              variants={{ rest: { scale: 1 }, hover: { scale: 1.06 } }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'grayscale(20%)', background: '#0c0c0c' }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(9,9,9,0.92) 15%, rgba(9,9,9,0.15) 60%, rgba(9,9,9,0.35) 100%)',
+              }}
+            />
+            <div style={{ position: 'absolute', left: '1.5rem', right: '1.5rem', bottom: '1.5rem' }}>
+              <span className="font-mono" style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: '#C9A84C', textTransform: 'uppercase' }}>
+                {p.category}
+              </span>
+              <h3 className="font-display" style={{ fontSize: '1.6rem', fontWeight: 700, color: '#f5f5f0', marginTop: '0.4rem' }}>
+                {p.title}
+              </h3>
             </div>
-
-            {/* Content */}
-            <div style={{ padding: '1.5rem' }}>
-              <h4 className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: '#f5f5f0', marginBottom: '0.4rem', lineHeight: 1.2 }}>
-                {project.title}
-              </h4>
-              <p style={{ fontSize: '0.75rem', color: '#C9A84C', marginBottom: '0.75rem', fontStyle: 'italic', fontFamily: 'Playfair Display, serif' }}>
-                {project.tagline}
-              </p>
-              <p style={{ fontSize: '0.8rem', color: '#555', lineHeight: 1.65, fontWeight: 300, marginBottom: '1rem' }}>
-                {project.description}
-              </p>
-
-              {/* Tech stack */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '1.25rem' }}>
-                {project.tech.map((t) => (
-                  <span key={t} className="font-mono" style={{ fontSize: '0.55rem', color: '#444', padding: '0.2rem 0.5rem', border: '1px solid #222', letterSpacing: '0.05em' }}>
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {/* Links */}
-              <div style={{ display: 'flex', gap: '1rem' }}>
-                {project.live && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ fontSize: '0.65rem', color: '#C9A84C', textDecoration: 'none', letterSpacing: '0.1em', textTransform: 'uppercase', fontFamily: 'Space Mono, monospace', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#E8C870')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#C9A84C')}
-                  >
-                    ↗ View Live
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
+          </motion.div>
         ))}
       </div>
+
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveId(null)}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 100,
+              background: 'rgba(9,9,9,0.75)',
+              backdropFilter: 'blur(14px)',
+              WebkitBackdropFilter: 'blur(14px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '2rem',
+            }}
+          >
+            <motion.div
+              layoutId={`card-${active.id}`}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                width: '100%',
+                maxWidth: '980px',
+                maxHeight: '85vh',
+                background: '#111',
+                display: 'grid',
+                gridTemplateColumns: '1.1fr 1fr',
+                overflow: 'hidden',
+                border: '1px solid rgba(201,168,76,0.25)',
+              }}
+            >
+              <div style={{ position: 'relative', overflow: 'hidden' }}>
+                <img
+                  src={active.image}
+                  alt={active.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'grayscale(20%)', background: '#0c0c0c' }}
+                />
+              </div>
+
+              <div style={{ padding: '3rem 2.5rem', overflowY: 'auto', position: 'relative' }}>
+                <button
+                  onClick={() => setActiveId(null)}
+                  aria-label="Close"
+                  style={{
+                    position: 'absolute',
+                    top: '1.5rem',
+                    right: '1.5rem',
+                    background: 'transparent',
+                    border: '1px solid rgba(245,245,240,0.2)',
+                    color: '#f5f5f0',
+                    width: '2.2rem',
+                    height: '2.2rem',
+                    cursor: 'pointer',
+                    fontSize: '1rem',
+                  }}
+                >
+                  ✕
+                </button>
+
+                <span className="font-mono" style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: '#C9A84C', textTransform: 'uppercase' }}>
+                  {active.category}
+                </span>
+                <h2 className="font-display" style={{ fontSize: '2rem', fontWeight: 800, color: '#f5f5f0', margin: '0.6rem 0 1.2rem' }}>
+                  {active.title}
+                </h2>
+                <p style={{ color: '#999', lineHeight: 1.8, fontSize: '0.95rem', fontWeight: 300, marginBottom: '1.8rem' }}>
+                  {active.description}
+                </p>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2rem' }}>
+                  {active.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="font-mono"
+                      style={{
+                        fontSize: '0.6rem',
+                        letterSpacing: '0.1em',
+                        color: '#C9A84C',
+                        border: '1px solid rgba(201,168,76,0.3)',
+                        padding: '0.35rem 0.7rem',
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                  {active.liveUrl && (
+                    <a
+                      href={active.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        padding: '0.75rem 1.75rem',
+                        background: '#C9A84C',
+                        color: '#090909',
+                        fontSize: '0.7rem',
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                      }}
+                    >
+                      View Live
+                    </a>
+                  )}
+                  {active.githubUrl && (
+                    <a
+                      href={active.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        padding: '0.75rem 1.75rem',
+                        background: 'transparent',
+                        color: '#f5f5f0',
+                        border: '1px solid rgba(245,245,240,0.2)',
+                        fontSize: '0.7rem',
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      GitHub
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <style>{`
-        @media (max-width: 1000px) {
-          #projects > div:last-child { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 640px) {
-          #projects > div:last-child { grid-template-columns: 1fr !important; }
+        @media (max-width: 768px) {
           #projects { padding: 5rem 1.5rem !important; }
+          #projects > div[style*='position: fixed'] > div { grid-template-columns: 1fr !important; max-height: 90vh !important; }
         }
       `}</style>
     </section>

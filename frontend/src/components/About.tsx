@@ -1,3 +1,5 @@
+import aboutImg from '../imports/About_img.png'
+
 export default function About() {
   return (
     <section id="about" style={{ padding: '8rem 5rem', background: '#090909', position: 'relative' }}>
@@ -57,7 +59,7 @@ export default function About() {
           {/* Portrait inset */}
           <div style={{ position: 'relative', height: '300px', overflow: 'hidden' }}>
             <img
-              src="https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?w=800&h=500&fit=crop&auto=format"
+              src={aboutImg}
               alt="Developer portrait"
               style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(30%)', opacity: 0.8 }}
             />
