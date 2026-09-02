@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-import hgPromotionsImg from '../imports/HG_Promotions.png'
-import campariImg from '../imports/Campari_Promotions.png'
-import archerImg from '../imports/Archer_Africa.png'
-import saHomeschoolingImg from '../imports/SA_homeschooling.png'
-import sentimentImg from '../imports/Sentiment_Analyzer.png'
-import predictiveMaintenanceImg from '../imports/AI_Predictive_Maintenance.png'
-import resumeBuilderImg from '../imports/LLG_Resume_Builder.png'
-import educationalMaterialImg from '../imports/Educal_app.png'
-import loanPredictionImg from '../imports/image-1.png'
-import sundaySchoolImg from '../imports/image-2.png'
-import gudeMobileImg from '../imports/Gude_Mobile.png'
-import neonDexImg from '../imports/Neon_Dex.png'
-import openBankImg from '../imports/OpenBank.png'
+import hgPromotionsImg from '../imports/HG_Promotions.webp'
+import campariImg from '../imports/Campari_Promotions.webp'
+import archerImg from '../imports/Archer_Africa.webp'
+import saHomeschoolingImg from '../imports/SA_homeschooling.webp'
+import sentimentImg from '../imports/Sentiment_Analyzer.webp'
+import predictiveMaintenanceImg from '../imports/AI_Predictive_Maintenance.webp'
+import resumeBuilderImg from '../imports/LLG_Resume_Builder.webp'
+import educationalMaterialImg from '../imports/Educal_app.webp'
+import loanPredictionImg from '../imports/Loan_Prediction.webp'
+import sundaySchoolImg from '../imports/image-2.webp'
+import gudeMobileImg from '../imports/Gude_Mobile.webp'
+import neonDexImg from '../imports/Neon_Dex.webp'
+import openBankImg from '../imports/OpenBank.webp'
+import taskFlowImg from '../imports/TaskFlow.webp'
 
 type Project = {
   id: string
@@ -30,10 +31,12 @@ const PROJECTS: Project[] = [
   {
     id: 'openbank',
     title: 'OpenBank',
-    category: 'Personal Project',
-    description: 'A personal project prototyping a modern banking experience.',
+    category: 'Personal Project — Full-Stack Banking System',
+    description:
+      'A secure digital banking simulation with JWT authentication, bcrypt password hashing, and protected route architecture. Supports the full account lifecycle — deposits, withdrawals, transfers, and transaction history with real-time balance tracking — backed by a RESTful Express and MongoDB API, with jsPDF-powered PDF statement generation.',
     image: openBankImg,
-    tags: ['Personal'],
+    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'jsPDF'],
+    liveUrl: 'https://openbank-nine.vercel.app/',
   },
   {
     id: 'hg-promotions',
@@ -43,6 +46,7 @@ const PROJECTS: Project[] = [
       'The earlier iteration of the promotions staffing platform before it was rebranded to Campari Promotions — same core system: role-based dashboards for admins, supervisors, businesses, and promoters.',
     image: hgPromotionsImg,
     tags: ['React', 'TypeScript', 'Node.js', 'Prisma', 'PostgreSQL'],
+    liveUrl: 'https://hg-promotions.vercel.app/',
   },
   {
     id: 'campari-promotions',
@@ -52,6 +56,7 @@ const PROJECTS: Project[] = [
       'A full-stack promotions staffing platform with distinct dashboards for admins, supervisors, businesses, and promoters — including an Instagram-DM-style chat request system, budget/PO tracking, activation report submissions, and a business credit ledger with CSV/PDF export.',
     image: campariImg,
     tags: ['React', 'TypeScript', 'Node.js', 'Prisma', 'PostgreSQL'],
+    liveUrl: 'https://campari-promotions.vercel.app/',
     githubUrl: 'https://github.com/Addmore-Development/Campari-Promotions',
   },
   {
@@ -72,6 +77,7 @@ const PROJECTS: Project[] = [
       'A multi-page site for an international academic-experiences company based in Johannesburg, including an expandable services section and consolidated navigation.',
     image: archerImg,
     tags: ['HTML', 'CSS', 'JavaScript'],
+    liveUrl: 'https://archer-africa.vercel.app/',
   },
   {
     id: 'sentiment-analyzer',
@@ -131,7 +137,7 @@ const PROJECTS: Project[] = [
       'An interactive chatbot-driven portal built for a Sunday School program.',
     image: sundaySchoolImg,
     tags: ['Chatbot', 'Landbot'],
-    liveUrl: 'https://landbot.online/v3/H-3106021-L0BWBVHVKR7Y1AMH/index.html',
+    liveUrl: 'https://sunday-school-gules.vercel.app/',
   },
   {
     id: 'gude-mobile',
@@ -145,10 +151,22 @@ const PROJECTS: Project[] = [
   {
     id: 'neondex',
     title: 'NeonDex',
-    category: 'Personal Project',
-    description: 'A personal portfolio project exploring interface and data design.',
+    category: 'Personal Project — Full-Stack Pokémon Web App',
+    description:
+      'A full-stack interactive Pokémon platform with a custom type-effectiveness engine implementing the full 18-type damage matrix for a live battle simulator. Uses a multi-layer caching system — Angular Signals, HTTP cache, and LocalStorage — to optimize PokéAPI performance at scale, built with service-layer separation and reusable component architecture.',
     image: neonDexImg,
-    tags: ['Personal'],
+    tags: ['Angular 19', 'TypeScript', 'Tailwind CSS', 'Node.js', 'REST APIs'],
+    liveUrl: 'https://neondex-22.netlify.app/',
+  },
+  {
+    id: 'taskflow',
+    title: 'TaskFlow Ops',
+    category: 'Personal Project — Operational Command System',
+    description:
+      'A cyberpunk-themed work request management platform for administrators and field agents to create, assign, track, and resolve operational protocols in real time. Features role-based access control enforced at both the UI and service layers, an auto-escalation engine that raises overdue protocols to critical priority with a system-logged audit trail, live search and multi-select filtering, and a two-layer caching strategy combining an in-memory Zustand store with persistent localStorage.',
+    image: taskFlowImg,
+    tags: ['React', 'TypeScript', 'Zustand', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB'],
+    liveUrl: 'https://taskflow-22.netlify.app/',
   },
 ]
 
@@ -278,7 +296,7 @@ export default function Projects() {
                 />
               </div>
 
-              <div style={{ padding: '3rem 2.5rem', overflowY: 'auto', position: 'relative' }}>
+              <div style={{ padding: '3rem 2.5rem', overflowY: 'auto', position: 'relative', minHeight: 0 }}>
                 <button
                   onClick={() => setActiveId(null)}
                   aria-label="Close"

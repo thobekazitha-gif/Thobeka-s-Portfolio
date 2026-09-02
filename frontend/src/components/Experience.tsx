@@ -25,6 +25,17 @@ const education = [
   },
 ]
 
+const certifications = [
+  'Introduction to Cloud Computing',
+  'HTML, CSS & JavaScript Fundamentals',
+  'React Basics',
+  'Node.js & Express',
+  'Python for Data Science, AI & Development',
+  'DevOps Fundamentals',
+  'Kubernetes Essentials',
+  'Application Security & Monitoring',
+]
+
 const highlights = [
   'Built and maintained React applications for live client products',
   'Developed Node.js and Express REST APIs',
@@ -43,7 +54,7 @@ export default function Experience() {
         <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent)' }} />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem' }}>
+      <div className="experience-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem' }}>
         {/* Work experience */}
         <div>
           <h3 className="font-display" style={{ fontSize: '2rem', fontWeight: 700, color: '#f5f5f0', marginBottom: '0.5rem' }}>
@@ -112,9 +123,42 @@ export default function Experience() {
         </div>
       </div>
 
+      {/* Certifications */}
+      <div style={{ marginTop: '5rem' }}>
+        <h3 className="font-mono" style={{ fontSize: '0.65rem', color: '#C9A84C', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
+          Certifications — Coursera
+        </h3>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
+          {certifications.map((cert) => (
+            <span
+              key={cert}
+              style={{
+                padding: '0.4rem 0.9rem',
+                border: '1px solid rgba(201,168,76,0.2)',
+                fontSize: '0.75rem',
+                color: '#888',
+                fontWeight: 300,
+                transition: 'all 0.2s',
+                cursor: 'default',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#C9A84C'
+                e.currentTarget.style.color = '#C9A84C'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(201,168,76,0.2)'
+                e.currentTarget.style.color = '#888'
+              }}
+            >
+              {cert}
+            </span>
+          ))}
+        </div>
+      </div>
+
       <style>{`
         @media (max-width: 768px) {
-          #experience > div:last-child { grid-template-columns: 1fr !important; gap: 3rem !important; }
+          #experience .experience-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
           #experience { padding: 5rem 1.5rem !important; }
         }
       `}</style>

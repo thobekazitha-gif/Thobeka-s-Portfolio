@@ -35,4 +35,4 @@ Thumbs.db
 .figma/make/kit.html
 
 # typescript
-*.tsbuildinfo
+*.tsbuildinfo.env

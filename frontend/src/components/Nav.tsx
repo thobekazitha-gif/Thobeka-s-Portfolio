@@ -49,7 +49,7 @@ export default function Nav() {
       </button>
 
       {/* Desktop links */}
-      <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }} className="hidden md:flex">
+      <div style={{ gap: '2.5rem', alignItems: 'center' }} className="hidden md:flex">
         {links.map((l) => (
           <button
             key={l}
@@ -71,6 +71,23 @@ export default function Nav() {
             {l}
           </button>
         ))}
+        <a
+          href="/Thobeka_Zitha_SoftwareEngineer_Resume.pdf"
+          download="Thobeka_Zitha_SoftwareEngineer_Resume.pdf"
+          style={{
+            color: '#999',
+            fontSize: '0.7rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            textDecoration: 'none',
+            transition: 'color 0.2s',
+            fontFamily: 'Inter, sans-serif',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = '#C9A84C')}
+          onMouseLeave={(e) => (e.currentTarget.style.color = '#999')}
+        >
+          Resume
+        </a>
         <a
           href="#contact"
           onClick={(e) => { e.preventDefault(); handleNav('Contact') }}
@@ -101,7 +118,7 @@ export default function Nav() {
       {/* Mobile burger */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#C9A84C', display: 'flex', flexDirection: 'column', gap: '5px' }}
+        style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#C9A84C', flexDirection: 'column', gap: '5px' }}
         className="flex md:hidden"
       >
         {[0, 1, 2].map((i) => (
@@ -132,6 +149,13 @@ export default function Nav() {
               {l}
             </button>
           ))}
+          <a
+            href="/Thobeka_Zitha_SoftwareEngineer_Resume.pdf"
+            download="Thobeka_Zitha_SoftwareEngineer_Resume.pdf"
+            style={{ color: '#C9A84C', fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'none', fontFamily: 'Inter, sans-serif' }}
+          >
+            Download Resume
+          </a>
           <button onClick={() => setMenuOpen(false)} style={{ position: 'absolute', top: '1.5rem', right: '2rem', background: 'none', border: 'none', color: '#C9A84C', fontSize: '1.5rem', cursor: 'pointer' }}>✕</button>
         </div>
       )}

@@ -1,4 +1,4 @@
-import contactImg from '../imports/african landscape.jpg'
+import contactImg from '../imports/african landscape.webp'
 
 const interests = [
   'Full-Stack Development',
@@ -136,7 +136,7 @@ export default function Contact() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {[
-                { label: 'Email', value: 'thobeka.zitha@email.com', href: 'mailto:thobeka.zitha@email.com' },
+                { label: 'Email', value: 'thobekazitha40@gmail.com', href: 'mailto:thobekazitha40@gmail.com' },
                 { label: 'LinkedIn', value: 'linkedin.com/in/thobeka-zitha', href: 'https://www.linkedin.com/in/thobeka-zitha' },
                 { label: 'GitHub', value: 'github.com/thobekazitha-gif', href: 'https://github.com/thobekazitha-gif' },
                 { label: 'Portfolio', value: 'thobekazitha.gamma.site', href: 'https://thobekazitha-engj1u2.gamma.site/' },

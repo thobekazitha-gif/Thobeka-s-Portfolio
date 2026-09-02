@@ -1,29 +1,56 @@
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+
 const skillGroups = [
   {
     category: 'Frontend',
+    level: 90,
     skills: ['React', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'Angular'],
   },
   {
     category: 'Backend',
+    level: 80,
     skills: ['Node.js', 'Express.js', 'REST APIs', 'JWT / JWS Auth'],
   },
   {
     category: 'Databases',
+    level: 75,
     skills: ['PostgreSQL', 'MongoDB', 'Prisma ORM'],
   },
   {
     category: 'Languages',
+    level: 85,
     skills: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C++'],
   },
   {
     category: 'AI & ML',
+    level: 70,
     skills: ['Machine Learning', 'NLP', 'Sentiment Analysis', 'Scikit-learn'],
   },
   {
     category: 'Tools & DevOps',
+    level: 85,
     skills: ['Git', 'GitHub', 'Vercel', 'Netlify', 'Figma', 'Postman', 'Render'],
   },
 ]
+
+function ProficiencyBar({ level }: { level: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-40px' })
+
+  return (
+    <div ref={ref} style={{ marginBottom: '1.25rem' }}>
+      <div style={{ height: '3px', background: 'rgba(201,168,76,0.12)', width: '100%' }}>
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: inView ? `${level}%` : 0 }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          style={{ height: '100%', background: 'linear-gradient(90deg, #8B6E2E, #C9A84C, #E8C870)' }}
+        />
+      </div>
+    </div>
+  )
+}
 
 export default function Skills() {
   return (
@@ -54,6 +81,8 @@ export default function Skills() {
                 {group.category}
               </span>
             </div>
+
+            <ProficiencyBar level={group.level} />
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
               {group.skills.map((skill) => (

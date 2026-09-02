@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import StarField from '../StarField'
-import heroImg from '../imports/Hero_img.png'
+import heroImg from '../imports/Hero_img.webp'
 
 export default function Hero() {
   const lineRef = useRef<HTMLDivElement>(null)
@@ -136,9 +136,8 @@ export default function Hero() {
               View Projects
             </button>
             <a
-              href="https://thobekazitha-engj1u2.gamma.site/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/Thobeka_Zitha_SoftwareEngineer_Resume.pdf"
+              download="Thobeka_Zitha_SoftwareEngineer_Resume.pdf"
               style={{
                 padding: '0.85rem 2.5rem',
                 background: 'transparent',
@@ -154,11 +153,13 @@ export default function Hero() {
                 textDecoration: 'none',
                 display: 'inline-flex',
                 alignItems: 'center',
+                gap: '0.6rem',
               }}
               onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#C9A84C'; e.currentTarget.style.color = '#C9A84C' }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(245,245,240,0.2)'; e.currentTarget.style.color = '#f5f5f0' }}
             >
               Download CV
+              <span aria-hidden="true" style={{ fontSize: '0.85rem' }}>↓</span>
             </a>
           </div>
 
