@@ -20,7 +20,7 @@ export default function Contact() {
   return (
     <>
       {/* Looking For section */}
-      <section style={{ padding: '8rem 5rem', background: '#090909', position: 'relative', overflow: 'hidden' }}>
+      <section id="looking-for" style={{ padding: '8rem 5rem', background: '#090909', position: 'relative', overflow: 'hidden' }}>
         {/* Large background text */}
         <div style={{
           position: 'absolute',
@@ -45,7 +45,7 @@ export default function Contact() {
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent)' }} />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
+        <div className="looking-for-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
           <div>
             <h2 className="font-display" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 900, color: '#f5f5f0', lineHeight: 1.1, marginBottom: '2rem' }}>
               Open to New<br />
@@ -105,7 +105,8 @@ export default function Contact() {
 
         <style>{`
           @media (max-width: 768px) {
-            #looking-for > div:nth-child(3) { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+            #looking-for .looking-for-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+            #looking-for { padding: 5rem 1.5rem !important; }
           }
         `}</style>
       </section>
@@ -117,7 +118,7 @@ export default function Contact() {
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent)' }} />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'start' }}>
+        <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'start' }}>
           <div>
             <h2 className="font-display" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 900, lineHeight: 0.95, marginBottom: '2rem', color: '#f5f5f0' }}>
               Let's Build<br />
@@ -184,14 +185,14 @@ export default function Contact() {
 
         <style>{`
           @media (max-width: 768px) {
-            #contact > div:last-child { grid-template-columns: 1fr !important; gap: 3rem !important; }
+            #contact .contact-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
             #contact { padding: 5rem 1.5rem !important; }
           }
         `}</style>
       </section>
 
       {/* Footer */}
-      <footer style={{
+      <footer className="site-footer" style={{
         padding: '2.5rem 5rem',
         background: '#090909',
         borderTop: '1px solid rgba(201,168,76,0.1)',
@@ -229,6 +230,12 @@ export default function Contact() {
         </div>
         <div style={{ width: '30px', height: '1px', background: '#C9A84C' }} />
       </footer>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .site-footer { padding: 2rem 1.5rem !important; justify-content: center !important; text-align: center; }
+        }
+      `}</style>
     </>
   )
 }

@@ -64,7 +64,7 @@ export default function Hero() {
           </div>
 
           {/* Eyebrow — spread edge-to-edge */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '480px', marginBottom: '1rem' }}>
+          <div className="hero-eyebrow" style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '480px', marginBottom: '1rem' }}>
             {['Full-Stack Developer', 'AI Engineer'].map((w) => (
               <span key={w} className="font-mono" style={{ fontSize: '0.65rem', letterSpacing: '0.15em', color: '#C9A84C', textTransform: 'uppercase' }}>
                 {w}
@@ -189,7 +189,7 @@ export default function Hero() {
       {/* Right panel — photo. Background now matches the hero's own black (#090909)
           instead of the lighter #111 it had before, so the padding-top strip above
           the photo (which clears the fixed nav) doesn't read as a different shade. */}
-      <div style={{
+      <div className="hero-photo-panel" style={{
         position: 'relative',
         height: '920px',
         overflow: 'hidden',
@@ -237,10 +237,17 @@ export default function Hero() {
             grid-template-rows: auto 50vh;
           }
           #hero > div:first-child {
-            padding: 6rem 2rem 2rem !important;
+            padding: 6rem 1.5rem 2rem !important;
           }
           #hero h1 {
             font-size: clamp(2.2rem, 12vw, 3rem) !important;
+          }
+          #hero .hero-eyebrow {
+            flex-wrap: wrap !important;
+            gap: 0.5rem 1.5rem !important;
+          }
+          #hero .hero-photo-panel {
+            height: 50vh !important;
           }
         }
       `}</style>

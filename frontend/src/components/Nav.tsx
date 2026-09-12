@@ -19,6 +19,7 @@ export default function Nav() {
 
   return (
     <nav
+      className="site-nav"
       style={{
         position: 'fixed',
         top: 0,
@@ -159,6 +160,12 @@ export default function Nav() {
           <button onClick={() => setMenuOpen(false)} style={{ position: 'absolute', top: '1.5rem', right: '2rem', background: 'none', border: 'none', color: '#C9A84C', fontSize: '1.5rem', cursor: 'pointer' }}>✕</button>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 600px) {
+          .site-nav { padding: 1rem 1.25rem !important; }
+        }
+      `}</style>
     </nav>
   )
 }

@@ -9,7 +9,7 @@ export default function About() {
         <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent)' }} />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
+      <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
         {/* Left: large text statement */}
         <div>
           <h2 className="font-display" style={{
@@ -73,7 +73,7 @@ export default function About() {
 
       <style>{`
         @media (max-width: 768px) {
-          #about > div:last-child { grid-template-columns: 1fr !important; gap: 3rem !important; }
+          #about .about-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
           #about { padding: 5rem 1.5rem !important; }
         }
       `}</style>

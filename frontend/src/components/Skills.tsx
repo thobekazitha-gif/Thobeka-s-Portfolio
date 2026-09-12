@@ -60,7 +60,7 @@ export default function Skills() {
         <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(201,168,76,0.4), transparent)' }} />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'rgba(201,168,76,0.1)' }}>
+      <div className="skills-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'rgba(201,168,76,0.1)' }}>
         {skillGroups.map((group, i) => (
           <div
             key={group.category}
@@ -116,10 +116,10 @@ export default function Skills() {
 
       <style>{`
         @media (max-width: 900px) {
-          #skills > div:last-child { grid-template-columns: repeat(2, 1fr) !important; }
+          #skills .skills-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 600px) {
-          #skills > div:last-child { grid-template-columns: 1fr !important; }
+          #skills .skills-grid { grid-template-columns: 1fr !important; }
           #skills { padding: 5rem 1.5rem !important; }
         }
       `}</style>
